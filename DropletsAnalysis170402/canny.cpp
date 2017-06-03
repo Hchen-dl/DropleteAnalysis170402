@@ -16,17 +16,18 @@ int kernel_size = 3;
 char* window_name = "Edge Map";
 
 /**
-* @º¯Êý CannyThreshold
-* @¼ò½é£º trackbar ½»»¥»Øµ÷ - CannyãÐÖµÊäÈë±ÈÀý1:3
+* @ï¿½ï¿½ï¿½ï¿½ CannyThreshold
+* @ï¿½ï¿½é£º trackbar ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ - Cannyï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1:3
 */
 void CannyThreshold(int, void*)
 {
-	/// Ê¹ÓÃ 3x3ÄÚºË½µÔë
+	/// Ê¹ï¿½ï¿½ 3x3ï¿½ÚºË½ï¿½ï¿½ï¿½
 
-	/// ÔËÐÐCannyËã×Ó
+	/// ï¿½ï¿½ï¿½ï¿½Cannyï¿½ï¿½ï¿½ï¿½
+	//test
 	Canny(src_gray_, detected_edges_, lowThreshold, lowThreshold*ratio, kernel_size);
 
-	/// Ê¹ÓÃ CannyËã×ÓÊä³ö±ßÔµ×÷ÎªÑÚÂëÏÔÊ¾Ô­Í¼Ïñ
+	/// Ê¹ï¿½ï¿½ Cannyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ô­Í¼ï¿½ï¿½
 	dst_ = Scalar::all(0);
 
 	src_.copyTo(dst_, detected_edges_);
@@ -34,11 +35,11 @@ void CannyThreshold(int, void*)
 }
 
 
-/** @º¯Êý main */
+/** @ï¿½ï¿½ï¿½ï¿½ main */
 int main(int argc, char** argv)
 {
-	/// ×°ÔØÍ¼Ïñ
-	src_ = imread("F:\\study\\±ÏÉè\\quad.jpg");
+	/// ×°ï¿½ï¿½Í¼ï¿½ï¿½
+	src_ = imread("F:\\study\\ï¿½ï¿½ï¿½ï¿½\\quad.jpg");
 
 	if (!src_.data)
 	{
@@ -46,22 +47,22 @@ int main(int argc, char** argv)
 	}
 	Rect roi(30, 30, src_.cols - 30, src_.rows - 30);
 	src_ = src_(roi);
-	/// ´´½¨ÓësrcÍ¬ÀàÐÍºÍ´óÐ¡µÄ¾ØÕó(dst)
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½srcÍ¬ï¿½ï¿½ï¿½ÍºÍ´ï¿½Ð¡ï¿½Ä¾ï¿½ï¿½ï¿½(dst)
 	dst_.create(src_.size(), src_.type());
 
-	/// Ô­Í¼Ïñ×ª»»Îª»Ò¶ÈÍ¼Ïñ
+	/// Ô­Í¼ï¿½ï¿½×ªï¿½ï¿½Îªï¿½Ò¶ï¿½Í¼ï¿½ï¿½
 	cvtColor(src_, src_gray_, CV_BGR2GRAY);
 
-	/// ´´½¨ÏÔÊ¾´°¿Ú
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 	namedWindow(window_name, CV_WINDOW_AUTOSIZE);
 
-	/// ´´½¨trackbar
+	/// ï¿½ï¿½ï¿½ï¿½trackbar
 	createTrackbar("Min Threshold:", window_name, &lowThreshold, max_lowThreshold, CannyThreshold);
 
-	/// ÏÔÊ¾Í¼Ïñ
+	/// ï¿½ï¿½Ê¾Í¼ï¿½ï¿½
 	CannyThreshold(0, 0);
 
-	/// µÈ´ýÓÃ»§·´Ó¦
+	/// ï¿½È´ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ó¦
 	waitKey(0);
 
 	return 0;
